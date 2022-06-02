@@ -6,7 +6,7 @@
 
 ###Tecnologias
 - JAVA 11
-- Spring Boot V2.7.0
+- Spring Boot V2.6.6
 - Spring doc open api ui V1.6.8
 - MySql V8.0.24
 - Flyway V5.2.4
@@ -14,7 +14,7 @@
 
 # url Swagger
 
-http://localhost:8080/swagger-ui/index.html#/
+http://localhost:8088/swagger-ui/index.html#/
 
 ## Docker composer DB
     version: '3.1'
@@ -27,7 +27,7 @@ http://localhost:8080/swagger-ui/index.html#/
           MYSQL_DATABASE: db_participants
 
         ports:
-          - "3308:3309"
+          - "3308:3306"
 
 
 ###End
