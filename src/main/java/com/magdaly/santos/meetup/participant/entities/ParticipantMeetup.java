@@ -14,6 +14,9 @@ public class ParticipantMeetup {
     @Column(nullable = false, name = "username")
     private String username;
 
+    @Column(nullable = false, name = "email")
+    private String email;
+
     @Column(nullable = false, name = "created_at")
     private LocalDate createdAt;
 
