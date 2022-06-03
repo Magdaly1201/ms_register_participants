@@ -1,4 +1,4 @@
-package com.magdaly.santos.meetup.participants;
+package com.magdaly.santos.meetup.participant;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

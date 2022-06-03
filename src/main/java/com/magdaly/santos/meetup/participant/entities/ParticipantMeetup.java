@@ -1,4 +1,4 @@
-package com.magdaly.santos.meetup.participants.entity;
+package com.magdaly.santos.meetup.participant.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
