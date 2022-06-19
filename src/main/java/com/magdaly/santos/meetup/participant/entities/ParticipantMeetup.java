@@ -1,7 +1,8 @@
 package com.magdaly.santos.meetup.participant.entities;
 
+import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -14,10 +15,9 @@ import java.time.LocalDate;
 
 @Entity
 @Getter
-@Setter
 //La anotación @RequiredArgsConstructor sólo incluirá argumentos para inicializar los atributos declarados como final
-@RequiredArgsConstructor
-@Table(name="participants_meetup")
+@Table(name="participant_meetup")
+@NoArgsConstructor
 public class ParticipantMeetup {
 
     @Id
@@ -25,17 +25,22 @@ public class ParticipantMeetup {
     private int id;
 
     @Column(nullable = false, name = "username")
-    private final String username;
+    private String username;
 
     @Column(nullable = false, name = "email")
-    private final String email;
+    private String email;
 
     @Column(nullable = false, name = "created_at")
     private LocalDate createdAt;
 
     @Column(nullable = false,name="meet_id")
-    private String meetId;
+    private int meetId;
 
-
+    public ParticipantMeetup(String username, String email, int meetId) {
+        this.username = username;
+        this.email = email;
+        this.meetId = meetId;
+        this.createdAt = LocalDate.now();
+    }
 
 }
