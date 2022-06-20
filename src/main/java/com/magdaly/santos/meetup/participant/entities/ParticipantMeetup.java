@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,7 @@ import java.time.LocalDate;
 @Getter
 //La anotación @RequiredArgsConstructor sólo incluirá argumentos para inicializar los atributos declarados como final
 @Table(name="participant_meetup")
+@ToString
 @NoArgsConstructor
 public class ParticipantMeetup {
 
