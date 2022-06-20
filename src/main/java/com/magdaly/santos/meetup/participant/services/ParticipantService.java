@@ -1,6 +1,7 @@
 package com.magdaly.santos.meetup.participant.services;
 
 import com.magdaly.santos.meetup.participant.entities.ParticipantMeetup;
+import com.magdaly.santos.meetup.participant.producer.SendEvent;
 import com.magdaly.santos.meetup.participant.repositories.ParticipantRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,8 +12,12 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class ParticipantService {
     private ParticipantRepository repository;
+    private SendEvent sendEvent;
 
     public ParticipantMeetup create(int meetId,String username, String email){
-        return repository.save(new ParticipantMeetup(username,email,meetId));
+        ParticipantMeetup participantMeetup = repository.save(new ParticipantMeetup(username,email,meetId));
+        log.info("add participant to meetup"+ participantMeetup);
+        sendEvent.addParticipantByMeetup(participantMeetup);
+        return participantMeetup ;
     }
 }
