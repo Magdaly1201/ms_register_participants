@@ -20,10 +20,8 @@ public class ParticipantController {
     private ParticipantService service;
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestParam(value = "meet_id") @NotNull int meetId,@RequestParam(value="username") String username, @RequestParam(value = "email") @NotNull String email) {
-        return new ResponseEntity<>(this.service.create(meetId,username, email),HttpStatus.OK);
+    public ResponseEntity<?> create(@RequestParam(value = "meet_id") @NotNull int meetId, @RequestParam(value = "username") String username, @RequestParam(value = "email") @NotNull String email) {
+        return new ResponseEntity<>(this.service.create(meetId, username, email), HttpStatus.OK);
     }
-
-
 
 }
