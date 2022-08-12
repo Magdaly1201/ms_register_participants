@@ -19,6 +19,7 @@ public class ParticipantController {
 
     private ParticipantService service;
 
+    //add coment 1
     @PostMapping
     public ResponseEntity<?> create(@RequestParam(value = "meet_id") @NotNull int meetId, @RequestParam(value = "username")
             String username, @RequestParam(value = "email") @NotNull String email) {
