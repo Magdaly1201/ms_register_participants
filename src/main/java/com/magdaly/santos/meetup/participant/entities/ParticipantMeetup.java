@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Entity
 @Getter
 //La anotación @RequiredArgsConstructor sólo incluirá argumentos para inicializar los atributos declarados como final
-@Table(name="participant_meetup")
+@Table(name = "participant_meetup")
 @ToString
 @NoArgsConstructor
 public class ParticipantMeetup {
@@ -33,7 +33,7 @@ public class ParticipantMeetup {
     @Column(nullable = false, name = "created_at")
     private LocalDate createdAt;
 
-    @Column(nullable = false,name="meet_id")
+    @Column(nullable = false, name = "meet_id")
     private int meetId;
 
     public ParticipantMeetup(String username, String email, int meetId) {
