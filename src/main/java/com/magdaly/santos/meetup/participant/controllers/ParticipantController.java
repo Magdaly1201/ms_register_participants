@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @Slf4j
 public class ParticipantController {
-
+    //add coment 3
     private ParticipantService service;
 
-    //add coment 1
+    //add coment 2
     @PostMapping
     public ResponseEntity<?> create(@RequestParam(value = "meet_id") @NotNull int meetId, @RequestParam(value = "username")
             String username, @RequestParam(value = "email") @NotNull String email) {
