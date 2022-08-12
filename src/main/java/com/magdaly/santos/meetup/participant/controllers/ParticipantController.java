@@ -17,12 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class ParticipantController {
 
-    private ParticipantService service;
+  private ParticipantService service;
 
-    @PostMapping
-    public ResponseEntity<?> create(@RequestParam(value = "meet_id") @NotNull int meetId, @RequestParam(value = "username")
-            String username, @RequestParam(value = "email") @NotNull String email) {
-        return new ResponseEntity<>(this.service.create(meetId, username, email), HttpStatus.OK);
-    }
+  @PostMapping
+  public ResponseEntity<?> create(@RequestParam(value = "meet_id") @NotNull int meetId,
+      @RequestParam(value = "username")
+          String username, @RequestParam(value = "email") @NotNull String email) {
+    return new ResponseEntity<>(this.service.create(meetId, username, email), HttpStatus.OK);
+  }
 
 }

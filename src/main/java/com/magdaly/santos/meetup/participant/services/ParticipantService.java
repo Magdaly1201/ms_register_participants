@@ -11,13 +11,15 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 @Slf4j
 public class ParticipantService {
-    private ParticipantRepository repository;
-    private SendEvent sendEvent;
 
-    public ParticipantMeetup create(int meetId,String username, String email){
-        ParticipantMeetup participantMeetup = repository.save(new ParticipantMeetup(username,email,meetId));
-        log.info("add participant to meetup"+ participantMeetup);
-        sendEvent.addParticipantByMeetup(participantMeetup);
-        return participantMeetup ;
-    }
+  private ParticipantRepository repository;
+  private SendEvent sendEvent;
+
+  public ParticipantMeetup create(int meetId, String username, String email) {
+    ParticipantMeetup participantMeetup = repository.save(
+        new ParticipantMeetup(username, email, meetId));
+    log.info("add participant to meetup" + participantMeetup);
+    sendEvent.addParticipantByMeetup(participantMeetup);
+    return participantMeetup;
+  }
 }

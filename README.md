@@ -1,10 +1,11 @@
-###API - Participantes en las Meetups
+### API - Participantes en las Meetups
 
-#Readme
+# Readme
 
 - Api para inscribirse en meetups.
 
-###Tecnologias
+### Tecnologias
+
 - JAVA 11
 - Spring Boot V2.6.6
 - Spring doc open api ui V1.6.8
@@ -17,6 +18,7 @@
 http://localhost:8088/swagger-ui/index.html#/
 
 ## Docker composer DB
+
     version: '3.1'
     services:
       db:
@@ -29,11 +31,10 @@ http://localhost:8088/swagger-ui/index.html#/
         ports:
           - "3308:3306"
 
-
-###End
-
+### End
 
 ## Docker composer Kafka and Zookeeper
+
     version: '3'
     services:
 
@@ -51,4 +52,4 @@ http://localhost:8088/swagger-ui/index.html#/
             KAFKA_ADVERTISED_HOST_NAME: localhost
             KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
 
-###End
+### End

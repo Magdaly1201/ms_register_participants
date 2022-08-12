@@ -8,11 +8,11 @@ import org.springframework.kafka.config.TopicBuilder;
 @Configuration
 public class KafkaConfig {
 
-    @Bean
-    public NewTopic holidayEvents(){
-        return TopicBuilder.name("meetups-events")
-                .partitions(1)
-                .replicas(1)
-                .build();
-    }
+  @Bean
+  public NewTopic holidayEvents() {
+    return TopicBuilder.name("meetups-events")
+        .partitions(1)
+        .replicas(1)
+        .build();
+  }
 }
