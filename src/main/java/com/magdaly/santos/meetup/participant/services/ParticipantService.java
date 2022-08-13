@@ -19,7 +19,7 @@ public class ParticipantService {
     ParticipantMeetup participantMeetup = repository.save(
         new ParticipantMeetup(username, email, meetId));
     log.info("add participant to meetup" + participantMeetup);
-    sendEvent.addParticipantByMeetup(participantMeetup);
+    sendEvent.addParticipantToMeetup(participantMeetup);
     return participantMeetup;
   }
 }

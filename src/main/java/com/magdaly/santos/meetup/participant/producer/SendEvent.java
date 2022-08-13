@@ -14,7 +14,7 @@ public class SendEvent {
   private final ObjectMapper objectMapper;
   private KafkaTemplate<String, String> kafkaTemplate;
 
-  public void addParticipantByMeetup(ParticipantMeetup participantMeetup) {
+  public void addParticipantToMeetup(ParticipantMeetup participantMeetup) {
     try {
       String value = objectMapper.writeValueAsString(participantMeetup);
       sendMessage(value);
