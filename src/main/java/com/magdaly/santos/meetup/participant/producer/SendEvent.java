@@ -25,8 +25,8 @@ public class SendEvent {
   }
 
   public void sendMessage(String message) {
-    String kafkaTopic = "meetups-events";
-    kafkaTemplate.send(kafkaTopic, message);
+    String topic = "${spring.kafka.topics.meetup-participant}";
+    kafkaTemplate.send(topic, message);
   }
 
   public void deleteParticipantByMeetup() {
