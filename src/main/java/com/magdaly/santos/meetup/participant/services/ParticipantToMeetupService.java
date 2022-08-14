@@ -20,11 +20,12 @@ public class ParticipantToMeetupService {
         this.producerMessageToKafka = producerMessageToKafka;
     }
 
-    public ParticipantToMeetup create(ParticipantToMeetupRequest participantToMeetupRequest) {
-        ParticipantToMeetup participantMeetup = participantToMeetupRepository.save(new ParticipantToMeetup(participantToMeetupRequest.getUsername(), participantToMeetupRequest.getEmail(), participantToMeetupRequest.getMeetId()));
-        logger.info("add participant to meetup" + participantMeetup);
-        producerMessageToKafka.sendParticipantToMeetup(participantMeetup);
-        return participantMeetup;
+    public ParticipantToMeetup create(int meetId, ParticipantToMeetupRequest participantToMeetupRequest) {
+        ParticipantToMeetup participantToMeetup = participantToMeetupRepository.save(new ParticipantToMeetup(participantToMeetupRequest.getUsername(),
+                participantToMeetupRequest.getEmail(), meetId));
+        logger.info("add participant to meetup" + participantToMeetup);
+        producerMessageToKafka.sendParticipantToMeetup(participantToMeetup);
+        return participantToMeetup;
     }
 
     @Override

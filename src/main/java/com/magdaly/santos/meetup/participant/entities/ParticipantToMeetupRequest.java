@@ -2,24 +2,17 @@ package com.magdaly.santos.meetup.participant.entities;
 
 import com.sun.istack.NotNull;
 
+import javax.validation.constraints.NotEmpty;
+
 public class ParticipantToMeetupRequest {
 
     @NotNull
-    private int meetId;
-
-    @NotNull
+    @NotEmpty
     private String username;
 
     @NotNull
+    @NotEmpty
     private String email;
-
-    public int getMeetId() {
-        return meetId;
-    }
-
-    public void setMeetId(int meetId) {
-        this.meetId = meetId;
-    }
 
     public String getUsername() {
         return username;
