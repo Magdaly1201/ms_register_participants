@@ -28,9 +28,11 @@ public class ParticipantToMeetupService {
         return participantToMeetup;
     }
 
-    @Override
-    public String toString() {
-        return "ParticipantToMeetupService{" + "participantToMeetupRepository=" + participantToMeetupRepository +
-                ", producerMessageToKafka=" + producerMessageToKafka + '}';
+    public void delete(int meetId, String participantEmail) {
+        ParticipantToMeetup participantToMeetupFound = participantToMeetupRepository.findById(meetId).orElseThrow();
+        logger.info("delete add participant before" + participantToMeetupFound);
+        participantToMeetupFound.deleteParticipantToMeetup();
+        logger.info("delete add participant after" + participantToMeetupFound);
+        participantToMeetupRepository.save(participantToMeetupFound);
     }
 }

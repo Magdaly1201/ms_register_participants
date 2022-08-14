@@ -1,5 +1,7 @@
 package com.magdaly.santos.meetup.participant.entities;
 
+import com.magdaly.santos.meetup.participant.utils.StateParticipantMeetup;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,6 +30,12 @@ public class ParticipantToMeetup {
     @Column(nullable = false, name = "meet_id")
     private int meetId;
 
+    @Column(nullable = false, name = "state")
+    private StateParticipantMeetup state;
+
+    @Column(nullable = true, name = "delete_at")
+    private LocalDate deleteAt;
+
     public ParticipantToMeetup() {
     }
 
@@ -36,6 +44,12 @@ public class ParticipantToMeetup {
         this.email = email;
         this.meetId = meetId;
         this.createdAt = LocalDate.now();
+        this.state = StateParticipantMeetup.OK;
+    }
+
+    public void deleteParticipantToMeetup() {
+        this.deleteAt = LocalDate.now();
+        this.state = StateParticipantMeetup.DELETE;
     }
 
     public int getId() {
@@ -58,4 +72,20 @@ public class ParticipantToMeetup {
         return meetId;
     }
 
+    public StateParticipantMeetup getState() {
+        return state;
+    }
+
+    @Override
+    public String toString() {
+        return "ParticipantToMeetup{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", createdAt=" + createdAt +
+                ", meetId=" + meetId +
+                ", state=" + state +
+                ", deleteAt=" + deleteAt +
+                '}';
+    }
 }

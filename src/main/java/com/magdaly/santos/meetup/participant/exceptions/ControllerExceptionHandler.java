@@ -1,4 +1,4 @@
-package com.magdaly.santos.meetup.participant.config.exceptions;
+package com.magdaly.santos.meetup.participant.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
