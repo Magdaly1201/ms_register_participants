@@ -7,16 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Entity
-@Getter
-//La anotación @RequiredArgsConstructor sólo incluirá argumentos para inicializar los atributos declarados como final
 @Table(name = "participant_meetup")
-@ToString
-@NoArgsConstructor
 public class ParticipantMeetup {
 
   @Id
@@ -35,11 +28,34 @@ public class ParticipantMeetup {
   @Column(nullable = false, name = "meet_id")
   private int meetId;
 
+  public ParticipantMeetup() {
+  }
+
   public ParticipantMeetup(String username, String email, int meetId) {
     this.username = username;
     this.email = email;
     this.meetId = meetId;
     this.createdAt = LocalDate.now();
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public LocalDate getCreatedAt() {
+    return createdAt;
+  }
+
+  public int getMeetId() {
+    return meetId;
   }
 
 }
