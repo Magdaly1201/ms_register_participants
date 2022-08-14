@@ -3,21 +3,26 @@ package com.magdaly.santos.meetup.participant.producer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.magdaly.santos.meetup.participant.entities.ParticipantMeetup;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-@AllArgsConstructor
-public class SendEvent {
+public class ProducerMessageToKafka {
 
   private final ObjectMapper objectMapper;
-  private KafkaTemplate<String, String> kafkaTemplate;
+  private final KafkaTemplate<String, String> kafkaTemplate;
+  @Value("${spring.kafka.topics.meetup-participant}")
+  private String TOPIC;
 
-  public void addParticipantToMeetup(ParticipantMeetup participantMeetup) {
+  public ProducerMessageToKafka(ObjectMapper objectMapper, KafkaTemplate<String, String> kafkaTemplate) {
+    this.objectMapper = objectMapper;
+    this.kafkaTemplate = kafkaTemplate;
+  }
+
+  public void sendParticipantToMeetup(ParticipantMeetup participantMeetup) {
     try {
-      String value = objectMapper.writeValueAsString(participantMeetup);
-      sendMessage(value);
+      this.sendMessage(objectMapper.writeValueAsString(participantMeetup));
     } catch (JsonProcessingException e) {
       e.printStackTrace();
       //TODO: MEJORAR EN EXCEPTION
@@ -25,8 +30,7 @@ public class SendEvent {
   }
 
   public void sendMessage(String message) {
-    String topic = "${spring.kafka.topics.meetup-participant}";
-    kafkaTemplate.send(topic, message);
+    kafkaTemplate.send(TOPIC, message);
   }
 
   public void deleteParticipantByMeetup() {
