@@ -17,39 +17,9 @@
 
 http://localhost:8088/swagger-ui/index.html#/
 
-## Docker composer DB
+## Docker composer 
 
-    version: '3.1'
-    services:
-      db:
-        image: mysql
-        restart: always
-        environment:
-          MYSQL_ROOT_PASSWORD:
-          MYSQL_DATABASE: db_participants
+se encuentra en la raiz del proyecto un docker-composer levantar con el comando.
 
-        ports:
-          - "3308:3306"
+`docker compose up`
 
-### End
-
-## Docker composer Kafka and Zookeeper
-
-    version: '3'
-    services:
-
-      zookeeper:
-        image: wurstmeister/zookeeper
-        container_name: zookeeper
-        ports:
-            - "2181:2181"
-      kafka:
-        image: wurstmeister/kafka
-        container_name: kafka
-        ports:
-            - "9092:9092"
-        environment:
-            KAFKA_ADVERTISED_HOST_NAME: localhost
-            KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-
-### End
