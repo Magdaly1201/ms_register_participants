@@ -5,10 +5,9 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: db_participants
-
+      MYSQL_DATABASE: db_meetup,db_participants
     ports:
-      - "3308:3306"
+      - "3307:3306"
   zookeeper:
     image: wurstmeister/zookeeper
     container_name: zookeeper
