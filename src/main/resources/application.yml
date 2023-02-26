@@ -2,9 +2,9 @@ server:
   port: 8088
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3308/db_participants?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3307/db_participants?createDatabaseIfNotExist=true&serverTimezone=UTC
     username: root
-    password: root
+    password: admin
     driverClassName: com.mysql.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect
