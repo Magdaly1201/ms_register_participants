@@ -2,13 +2,13 @@ server:
   port: 8088
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3307/db_participants?createDatabaseIfNotExist=true&serverTimezone=UTC
-    username: root
-    password: admin
+    url: jdbc:mysql://${DATABASE_HOST}/${DATABASE_NAME}?createDatabaseIfNotExist=${DATABASE_CREATE}&serverTimezone=UTC
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
     driverClassName: com.mysql.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect
-    show-sql: true
+    show-sql: ${DATABASE_SHOW_SQL}
     hibernate.ddl-auto: none
     properties.hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
     properties.hibernate.dialect.storage_engine: innodb
@@ -18,10 +18,10 @@ spring:
     time-zone: America/Argentina/Buenos_Aires
   kafka:
     template:
-      default-topic: meetups-events
+      default-topic: ${KAFKA_TOPIC_DEFAULT}
     producer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: ${KAFKA_HOST}
       key-serializer: org.apache.kafka.common.serialization.LongSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
     topics:
-      meetup-participant: participants-meetup
+      meetup-participant: ${KAFKA_TOPIC}

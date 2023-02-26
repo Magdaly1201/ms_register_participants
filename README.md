@@ -24,3 +24,9 @@ se encuentra en la raiz del proyecto un docker-composer levantar con el comando.
 
 `docker compose up`
 
+## ENVIRONMENTTs
+
+se encuentra un archivo local.env en la carpeta resource para levantar el proyecto de manera local, se pueden settear 
+con el plugins  [here](https://plugins.jetbrains.com/plugin/7861-envfile) importar como en el paso a paso de la docu.
+
+
