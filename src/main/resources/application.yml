@@ -25,3 +25,16 @@ spring:
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
     topics:
       meetup-participant: ${KAFKA_TOPIC}
+  application:
+    name: ms_register_participant
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+  renewalPercentThreshold: s0.85
+
+

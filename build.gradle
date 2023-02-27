@@ -4,7 +4,7 @@ plugins {
     id 'java'
 }
 
-group = 'com.magdaly.santos.meetup'
+group = 'com.magdaly.santos.ms_register_meetup'
 version = '0.0.1-SNAPSHOT'
 
 configurations {
@@ -26,10 +26,17 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-ui:1.6.8")
     implementation("org.springframework.kafka:spring-kafka")
     implementation("org.apache.logging.log4j:log4j-api")
+    implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.kafka:spring-kafka-test")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:2021.0.5"
+    }
 }
 
 tasks.named('test') {
