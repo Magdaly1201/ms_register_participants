@@ -1,6 +1,7 @@
 package com.magdaly.santos.meetup.participant.entities;
 
 import java.time.LocalDate;
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +15,8 @@ public class ParticipantMeetup {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false)
+  private UUID id;
 
   @Column(nullable = false, name = "username")
   private String username;
@@ -38,7 +40,7 @@ public class ParticipantMeetup {
     this.createdAt = LocalDate.now();
   }
 
-  public int getId() {
+  public UUID getId() {
     return id;
   }
 
