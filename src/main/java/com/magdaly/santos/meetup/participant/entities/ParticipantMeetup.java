@@ -1,10 +1,11 @@
 package com.magdaly.santos.meetup.participant.entities;
 
+import org.hibernate.annotations.GenericGenerator;
 import java.time.LocalDate;
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,8 +14,10 @@ import javax.persistence.Table;
 public class ParticipantMeetup {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  @GeneratedValue(generator = "uuid")
+  @GenericGenerator(name = "uuid", strategy = "uuid2")
+  @Column(columnDefinition = "BINARY(16)")
+  private UUID id;
 
   @Column(nullable = false, name = "username")
   private String username;
@@ -38,7 +41,7 @@ public class ParticipantMeetup {
     this.createdAt = LocalDate.now();
   }
 
-  public int getId() {
+  public UUID getId() {
     return id;
   }
 
