@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    data:
+      jpa.repositories.enabled: true
+    jackson:
+      time-zone: America/Argentina/Buenos_Aires
+  kafka:
+    template:
+      default-topic: topic-default-test
+    topics:
+      meetup-participant: topic-test
+    bootstrap-servers: ${spring.embedded.kafka.brokers}
+    consumer:
+      auto-offset-reset: earliest
+    embedded:
+      kafka:
+        broker:
+          partitions: 1
+          brokerProperties:
+            listeners: PLAINTEXT://localhost:9092
+            port: 9092
+  flyway:
+    url: jdbc:h2:mem:testdb
+    user: sa
+    password:
+    locations: classpath:db/migration
