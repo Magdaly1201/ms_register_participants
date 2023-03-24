@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TaskScheduled {
 
-    @Scheduled(cron="${jobs.cronSchedule:0/15 * * * * ?}")
+    @Scheduled(cron="${cron.schedule.task.example}")
     public void taskExample(){
         System.out.println("Prueba scheduling");
     }

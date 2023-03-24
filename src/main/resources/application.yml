@@ -25,3 +25,7 @@ spring:
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
     topics:
       meetup-participant: ${KAFKA_TOPIC}
+cron:
+  schedule:
+    task:
+      example: ${jobs.cronSchedule:0/15 * * * * ?}

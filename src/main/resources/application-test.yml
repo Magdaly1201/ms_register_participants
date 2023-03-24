@@ -31,3 +31,7 @@ spring:
     user: sa
     password:
     locations: classpath:db/migration
+cron:
+  schedule:
+    task:
+      example: ${jobs.cronSchedule:0/5 * * * * ?}

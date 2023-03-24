@@ -28,11 +28,13 @@ dependencies {
     implementation("org.apache.logging.log4j:log4j-api")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation ("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.awaitility:awaitility:3.1.0")
     testImplementation("org.springframework.kafka:spring-kafka-test")
-    testImplementation 'com.h2database:h2:1.4.200'
-    testImplementation 'org.springframework.kafka:spring-kafka-test'
+    testImplementation ("com.h2database:h2:1.4.200")
+    testImplementation ("org.springframework.kafka:spring-kafka-test")
+    // testImplementation ("org.flywaydb.flyway-test-extensions:flyway-junit5:7.14.0")
+
 }
 
 tasks.named('test') {
