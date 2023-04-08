@@ -16,8 +16,8 @@ spring:
   data:
     jpa.repositories.enabled: true
   flyway:
-    placeholders:
-      environment: prod
+    locations:
+      - classpath:/db/migration
   jackson:
     time-zone: America/Argentina/Buenos_Aires
   kafka:
