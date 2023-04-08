@@ -1,5 +1,7 @@
 server:
   port: 8088
+spring:
+  profiles: prod
   datasource:
     url: jdbc:mysql://${DATABASE_HOST}/${DATABASE_NAME}?createDatabaseIfNotExist=${DATABASE_CREATE}&serverTimezone=UTC
     username: ${DATABASE_USER}
@@ -15,7 +17,7 @@ server:
     jpa.repositories.enabled: true
   flyway:
     placeholders:
-      environment: local
+      environment: prod
   jackson:
     time-zone: America/Argentina/Buenos_Aires
   kafka:

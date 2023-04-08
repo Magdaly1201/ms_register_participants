@@ -1,4 +1,7 @@
+server:
+  port: 8088
 spring:
+  profiles: test
   datasource:
     url: jdbc:h2:mem:testdb
     driver-class-name: org.h2.Driver
@@ -11,6 +14,9 @@ spring:
       jpa.repositories.enabled: true
     jackson:
       time-zone: America/Argentina/Buenos_Aires
+  h2:
+    console:
+      enabled: true
   kafka:
     template:
       default-topic: topic-default-test
@@ -26,11 +32,24 @@ spring:
           brokerProperties:
             listeners: PLAINTEXT://localhost:9092
             port: 9092
+          properties:
+            auto.create.topics.enable: true
   flyway:
     url: jdbc:h2:mem:testdb
     user: sa
     password:
-    locations: classpath:db/migration
+    locations:
+      - classpath:/db/migration-test
+      - classpath:/db/migration
+logging:
+  level:
+    org:
+      flywaydb:
+        core:
+          internal:
+            resolver:
+              sql:
+                SqlMigrationExecutor=DEBUG:
 cron:
   schedule:
     task:
