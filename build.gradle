@@ -31,10 +31,11 @@ dependencies {
     testImplementation ("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.awaitility:awaitility:3.1.0")
     testImplementation("org.springframework.kafka:spring-kafka-test")
-    testImplementation ("com.h2database:h2:1.4.200")
-    testImplementation ("org.springframework.kafka:spring-kafka-test")
-    // testImplementation ("org.flywaydb.flyway-test-extensions:flyway-junit5:7.14.0")
+    testImplementation("com.h2database:h2:1.4.200")
+    testImplementation("org.flywaydb.flyway-test-extensions:flyway-spring-test:7.0.0")
+    testImplementation 'org.springframework.kafka:spring-kafka-test:2.8.1'
 
+    runtimeOnly 'org.springframework.boot:spring-boot-devtools'
 }
 
 tasks.named('test') {
