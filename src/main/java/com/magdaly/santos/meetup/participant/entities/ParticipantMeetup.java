@@ -1,6 +1,7 @@
 package com.magdaly.santos.meetup.participant.entities;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 import java.time.LocalDate;
 import java.util.UUID;
 import javax.persistence.Column;
@@ -14,15 +15,16 @@ import javax.persistence.Table;
 public class ParticipantMeetup {
 
   @Id
-  @GeneratedValue(generator = "uuid")
-  @GenericGenerator(name = "uuid", strategy = "uuid2")
-  @Column(columnDefinition = "BINARY(16)")
+  @GeneratedValue(generator = "UUID")
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+  @Column(name = "id", columnDefinition = "char(36)")
+  @Type(type = "org.hibernate.type.UUIDCharType")
   private UUID id;
 
-  @Column(nullable = false, name = "username")
+  @Column(nullable = false)
   private String username;
 
-  @Column(nullable = false, name = "email")
+  @Column(nullable = false)
   private String email;
 
   @Column(nullable = false, name = "created_at")
@@ -61,4 +63,14 @@ public class ParticipantMeetup {
     return meetId;
   }
 
+  @Override
+  public String toString() {
+    return "ParticipantMeetup{" +
+            "id=" + id +
+            ", username='" + username + '\'' +
+            ", email='" + email + '\'' +
+            ", createdAt=" + createdAt +
+            ", meetId=" + meetId +
+            '}';
+  }
 }
