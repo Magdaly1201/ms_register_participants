@@ -1,0 +1,1 @@
+ALTER TABLE participant_meetup ADD COLUMN email CHARACTER VARYING(255) not null ;
