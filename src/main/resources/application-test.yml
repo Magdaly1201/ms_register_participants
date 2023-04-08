@@ -39,15 +39,6 @@ spring:
     locations:
       - classpath:/db/migration-test
       - classpath:/db/migration
-logging:
-  level:
-    org:
-      flywaydb:
-        core:
-          internal:
-            resolver:
-              sql:
-                SqlMigrationExecutor=DEBUG:
 cron:
   schedule:
     task:
