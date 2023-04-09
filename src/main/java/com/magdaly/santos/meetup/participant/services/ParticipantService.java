@@ -1,19 +1,21 @@
 package com.magdaly.santos.meetup.participant.services;
 
 import com.magdaly.santos.meetup.participant.entities.ParticipantMeetup;
+import com.magdaly.santos.meetup.participant.exceptions.AlreadySubscribedException;
+import com.magdaly.santos.meetup.participant.exceptions.NotFoundMeetExceptions;
 import com.magdaly.santos.meetup.participant.producer.ProducerMessageToKafka;
 import com.magdaly.santos.meetup.participant.repositories.ParticipantRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLIntegrityConstraintViolationException;
+import java.text.MessageFormat;
 import java.util.List;
 
 @Service
 public class ParticipantService {
 
-  private static final Logger logger = LoggerFactory.getLogger(ParticipantService.class);
+  private final Logger logger = LoggerFactory.getLogger(this.getClass());
   private final ParticipantRepository participantRepository;
   private final ProducerMessageToKafka producerMessageToKafka;
 
@@ -22,35 +24,37 @@ public class ParticipantService {
     this.producerMessageToKafka = producerMessageToKafka;
   }
 
-  public ParticipantMeetup create(int meetId, String username, String email) {
-    try {
-      ParticipantMeetup participantMeetup = participantRepository.save(new ParticipantMeetup(username, email, meetId));
-      logger.info("add participant to meetup" + participantMeetup);
-      producerMessageToKafka.sendParticipantToMeetup(participantMeetup);
-      return participantMeetup;
-    } catch (Exception e) {
-      if (e.getCause() != null && e.getCause().getCause() instanceof SQLIntegrityConstraintViolationException) {
-        SQLIntegrityConstraintViolationException sql_violation_exception = (SQLIntegrityConstraintViolationException) e.getCause().getCause();
-        logger.error("SQLIntegrityConstraintViolationException has accured. " + sql_violation_exception.getMessage());
-        //TODO:AGREGAR EXCEPTIONS
-        throw new RuntimeException("error");
-      } else {
-        logger.error(e.getMessage());
-        throw new RuntimeException("error");
-      }
-    }
+  public ParticipantMeetup create(int meetId, String username, String email) throws AlreadySubscribedException {
+    ParticipantMeetup participantMeetup;
+    isUserSubscribedToMeet(username, meetId);
+    participantMeetup = participantRepository.save(new ParticipantMeetup(username, email, meetId));
+    logger.info("add participant to meetup" + participantMeetup);
+
+    //producerMessageToKafka.sendParticipantToMeetup(participantMeetup);
+    return participantMeetup;
+
   }
 
-  public ParticipantMeetup delete(int meetId, String username){
-    ParticipantMeetup participantMeetup = participantRepository.findByMeetIdAndUsername(meetId,username).orElseThrow(()->new RuntimeException("Not found"));
+  public void delete(int meetId, String username) throws NotFoundMeetExceptions {
+    ParticipantMeetup participantMeetup = findByMeetIdAndUsername(username,meetId);
     participantRepository.delete(participantMeetup);
-    logger.info("delete participant to meetup" + participantMeetup);
+    logger.info(MessageFormat.format("delete participant to meetup Result: {}.", participantMeetup));
     //todo enviar a kafka event
-    return  participantMeetup;
   }
 
   public List<ParticipantMeetup> findAllMeetupActive(String username){
     return participantRepository.findAllByUsername(username);
   }
+
+  public ParticipantMeetup findByMeetIdAndUsername(String username,int meetId) throws NotFoundMeetExceptions {
+   return participantRepository.findByMeetIdAndUsername(meetId, username).orElseThrow(()-> new NotFoundMeetExceptions(1,"Meet del usuario no encontrada",String.format("Meet del usuario no encontrada, no se consiguió la meet: %s para el usuario: %s en la base de datos", meetId, username)));
+  }
+
+  public void isUserSubscribedToMeet(String username, int meetId) throws AlreadySubscribedException {
+      if (participantRepository.findByMeetIdAndUsername(meetId, username).isPresent()) {
+        throw new AlreadySubscribedException(2,"El usuario ya esta subscrito a la meet",String.format("El usuario: %s ya está subscrito a la reunión: %s", username, meetId));
+      }
+  }
+
 
 }

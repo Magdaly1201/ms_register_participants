@@ -1,9 +1,7 @@
 package com.magdaly.santos.meetup.participant.integrations;
 
 import com.magdaly.santos.meetup.participant.services.ParticipantService;
-import org.flywaydb.core.Flyway;
 import org.flywaydb.test.annotation.FlywayTest;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +78,7 @@ class ParticipantControllerIntegrationTest {
                                 .param("meet_id","12")
                                 .param("username","Magdy")
                                 .param("email","magdaly1201@gmail.com"))
-                .andExpect(MockMvcResultMatchers.status().isCreated());
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(jsonPath("$.errors").value("2 - El usuario ya esta subscrito a la meet"));
     }
 }
