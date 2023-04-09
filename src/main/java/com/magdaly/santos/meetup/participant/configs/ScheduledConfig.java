@@ -1,4 +1,4 @@
-package com.magdaly.santos.meetup.participant.config;
+package com.magdaly.santos.meetup.participant.configs;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
