@@ -1,9 +1,8 @@
 package com.magdaly.santos.meetup.participant.task;
 
-import com.magdaly.santos.meetup.participant.config.ScheduledConfig;
+import com.magdaly.santos.meetup.participant.configs.ScheduledConfig;
 import com.magdaly.santos.meetup.participant.tasks.TaskScheduled;
 import org.awaitility.Duration;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
